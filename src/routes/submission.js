@@ -1,12 +1,15 @@
 import { Router } from "express";
-import mongoose from "mongoose";
-
+import submission from "../model/submission";
 
 const router = Router();
 
 
-router.post("/api/submission", (req, res) => {
-    
+router.post("/api/submission", async (req, res) => {
+    try {
+        
+    }catch (error) {
+        res.status(400).send(error)
+    }
 })
 
 export {router}
