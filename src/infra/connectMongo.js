@@ -1,7 +1,17 @@
-import mongoose  from "mongoose";
+import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
-mongoose.connect();
+dotenv.config();
 
-const mongodb = mongoose.connection
+const uri = process.env.MONGO_URI;
 
-export default mongodb;
+const client = new MongoClient(uri);
+
+try {
+    await client.connect();
+    console.log("Conectado ao MongoDB com sucesso!");
+} catch (error) {
+    console.error("Erro na conexão com o MongoDB:", error);
+}
+
+export default client;
