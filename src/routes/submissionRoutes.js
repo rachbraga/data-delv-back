@@ -23,4 +23,14 @@ router.post("/api/submission", async (req, res) => {
     }
 });
 
+router.get("/api/submission/list", async (req, res) => {
+  try {
+      const submissions = await Submission.find(); // busca todos os registros
+      res.status(200).json(submissions);
+  } catch (error) {
+      res.status(500).json({ error: "Erro ao buscar as submissões", details: error.message });
+  }
+});
+
+
 export { router };
