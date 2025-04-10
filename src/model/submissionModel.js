@@ -21,7 +21,8 @@ const submissionSchema = new mongoose.Schema(
             required: true,
             trim: true,
             match: [/^\d{10,11}$/, "Número de telefone inválido"] 
-        }
+        },
+        isChecked: { type: Boolean, default: false }
     },
     { timestamps: true } 
 );

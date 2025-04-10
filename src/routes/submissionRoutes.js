@@ -32,5 +32,28 @@ router.get("/api/submission/list", async (req, res) => {
   }
 });
 
+router.put("/api/submission/:id/check", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { isChecked } = req.body;
+  
+      const updatedSubmission = await Submission.findByIdAndUpdate(
+        id,
+        { isChecked },
+        { new: true }
+      );
+  
+      if (!updatedSubmission) {
+        return res.status(404).json({ error: "Submissão não encontrada." });
+      }
+  
+      res.status(200).json({
+        message: "Status de check atualizado com sucesso.",
+        submission: updatedSubmission,
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Erro ao atualizar", details: error.message });
+    }
+  });
 
 export { router };
